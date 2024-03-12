@@ -5,10 +5,15 @@
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix fuseki: <http://jena.apache.org/fuseki#> .
 
-:dataset  a     ja:DatasetTxnMem .
+# Define in memory dataset
+#:dataset  a     ja:DatasetTxnMem .
+
+# Define the TDB persistent dataset
+:tdbDataset a tdb:DatasetTDB ;
+        tdb:location "../JenaTDBStorage/" .  # Specify the directory for TDB data
 
 :service1  a                          fuseki:Service ;
-        fuseki:dataset                :dataset ;
+        fuseki:dataset                :tdbDataset ; # TDB Dataset # :dataset ; # in memory Dataset
         fuseki:name                   "ModEnv" ;
         fuseki:serviceQuery           "query" , "sparql" ;
         fuseki:serviceReadGraphStore  "get" ;
