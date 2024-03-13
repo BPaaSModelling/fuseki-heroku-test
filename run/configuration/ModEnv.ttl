@@ -13,7 +13,8 @@
         tdb:location "../JenaTDBStorage/" .  # Specify the directory for TDB data
 
 :service1  a                          fuseki:Service ;
-        fuseki:dataset                :tdbDataset ; # TDB Dataset # :dataset ; # in memory Dataset
+#      fuseki:dataset                :dataset ; # in memory Dataset
+        fuseki:dataset                :tdbDataset ; # TDB Dataset
         fuseki:name                   "ModEnv" ;
         fuseki:serviceQuery           "query" , "sparql" ;
         fuseki:serviceReadGraphStore  "get" ;
