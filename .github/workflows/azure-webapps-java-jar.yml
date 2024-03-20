@@ -52,7 +52,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: fuseki-heroku-test
+          name: fuseki-server
           path: '${{ github.workspace }}/*.jar'
 
   deploy:
@@ -68,7 +68,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: fuseki-server
+          name: fuseki-heroku-test
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
