@@ -34,7 +34,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -49,11 +49,11 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-     # Linux - name: Package Application
-     # Linux   run: zip -r fuseki.zip . -x "*.git*" "*.mvn*" "mvnw" "mvnw.cmd"
+      - name: Package Application
+        run: zip -r fuseki.zip . -x "*.git*" "*.mvn*" "mvnw" "mvnw.cmd"
       # Windows
-      - name: Zip files using PowerShell
-        run: Compress-Archive -Path * -DestinationPath fuseki.zip
+      #- name: Zip files using PowerShell
+      #  run: Compress-Archive -Path * -DestinationPath fuseki.zip
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -64,7 +64,7 @@ jobs:
   deploy:
     permissions:
       contents: none
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Development'
