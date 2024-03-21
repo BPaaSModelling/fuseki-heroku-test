@@ -53,7 +53,7 @@ jobs:
      # Linux   run: zip -r fuseki.zip . -x "*.git*" "*.mvn*" "mvnw" "mvnw.cmd"
       # Windows
       - name: Zip files using PowerShell
-        run: Compress-Archive -Path * -DestinationPath fuseki.zip -Exclude "*.git*", "*.mvn*", "mvnw", "mvnw.cmd"
+        run: Compress-Archive -Path * -DestinationPath fuseki.zip
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
