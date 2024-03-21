@@ -49,9 +49,12 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-      - name: Package Application
-        run: zip -r fuseki.zip . -x "*.git*" "*.mvn*" "mvnw" "mvnw.cmd"
-
+     # Linux - name: Package Application
+     # Linux   run: zip -r fuseki.zip . -x "*.git*" "*.mvn*" "mvnw" "mvnw.cmd"
+      # Windows
+      - name: Zip files using PowerShell
+        run: Compress-Archive -Path * -DestinationPath fuseki.zip -Exclude "*.git*", "*.mvn*", "mvnw", "mvnw.cmd"
+        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
