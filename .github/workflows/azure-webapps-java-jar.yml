@@ -49,11 +49,14 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+      - name: Package Application
+        run: zip -r fuseki.zip . -x "*.git*" "*.mvn*" "mvnw" "mvnw.cmd"
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: fuseki-server
-          path: '${{ github.workspace }}/*.jar'
+          name: fuseki-package
+          path: 'fuseki.zip' #${{ github.workspace }}/
 
   deploy:
     permissions:
@@ -68,7 +71,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: fuseki-server
+          name: fuseki-package
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -76,7 +79,7 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: 'fuseki-server.jar'
+          package: 'fuseki-package.zip'
           
           
 
