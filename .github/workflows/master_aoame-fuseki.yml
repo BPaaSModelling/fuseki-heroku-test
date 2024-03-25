@@ -3,6 +3,9 @@
 
 name: Build and deploy JAR app to Azure Web App - aoame-fuseki
 
+env:
+  AZURE_WEBAPP_NAME: aoame-fuseki      # set this to the name of your Azure Web App
+
 on:
   push:
     branches:
@@ -27,8 +30,8 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: java-app
-          path: '${{ github.workspace }}/fuseki-server.jar' #/target/*.jar'
+          name: fuseki-server
+          path: '${{ github.workspace }}/*.jar' #/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,13 +44,13 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: java-app
+          name: fuseki-server
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'aoame-fuseki'
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           slot-name: 'Production'
           package: '*.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_482C7C52F89C44748985C46E5FF4130B }}
