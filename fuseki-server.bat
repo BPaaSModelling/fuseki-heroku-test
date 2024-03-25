@@ -16,7 +16,7 @@
 
 @echo off
 @REM modify this to name the server jar
-java -Xmx1200M -jar fuseki-server.jar %*
+java -Xmx3.5g -jar fuseki-server.jar %*
 
 @REM Adding custom code to the Fuseki server:
 @REM  

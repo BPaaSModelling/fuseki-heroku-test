@@ -19,3 +19,5 @@ run/system/tdb.lock
 *.log
 *.tmp
 *.bak
+# GitHub Copilot persisted chat sessions
+/copilot/chatSessions

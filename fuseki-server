@@ -78,7 +78,7 @@ then
   exit 1
 fi
 
-JVM_ARGS=${JVM_ARGS:--Xmx1200M}
+JVM_ARGS=${JVM_ARGS:--Xmx3.5g} #${JVM_ARGS:--Xmx1200M}
 
 exec $JAVA $JVM_ARGS -jar "$JAR" "$@"
 
