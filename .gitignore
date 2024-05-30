@@ -8,6 +8,7 @@
 /dataSources.local.xml
 # TDB
 run/system/tdb.lock
+run/databses/
 
 # .gitignore file
 /.idea
