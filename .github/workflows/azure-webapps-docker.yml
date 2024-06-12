@@ -72,10 +72,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2  # This action checks out your repository's code
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: iisresearch # Replace with your Docker Hub username
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}  # Replace with your Docker Hub password
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: iisresearch / jena-fuseki-image:azure  # Replace with your Docker Hub image name and tag
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_482C7C52F89C44748985C46E5FF4130B }}
-          package: '.' # Path to the root directory
+          images: iisresearch/jena-fuseki-image:azure  # Replace with your Docker Hub image name and tag
