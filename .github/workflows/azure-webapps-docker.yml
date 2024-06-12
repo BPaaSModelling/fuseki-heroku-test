@@ -78,4 +78,4 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_482C7C52F89C44748985C46E5FF4130B }}
-          package: './fuseki-server.jar' # Path to the JAR file
+          package: '.' # Path to the root directory
