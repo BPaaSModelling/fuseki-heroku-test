@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_9f232be978e44f3f914a0b5aefdbd750 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_8c6a017c06e14cbeb31724a38997d62f }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_0c64519048ce4a888898251070d8947d }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_8d39fbc7bb0646b2a7b6fa77dcb862c2 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_9f232be978e44f3f914a0b5aefdbd750 }}/jena-fuseki:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0c64519048ce4a888898251070d8947d }}/jena-fuseki-image:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'aoame-fuseki'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6825654b2886417baedfebdd7902d656 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_9f232be978e44f3f914a0b5aefdbd750 }}/jena-fuseki:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6478f77ee90943b793d8f1177c294134 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0c64519048ce4a888898251070d8947d }}/jena-fuseki-image:${{ github.sha }}'
