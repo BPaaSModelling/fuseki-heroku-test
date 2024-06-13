@@ -10,5 +10,8 @@ COPY . .
 # Expose the Fuseki server port
 EXPOSE 3030
 
+# Ensure proper permissions for the Fuseki files
+RUN chmod +x fuseki-server.jar
+
 # Command to run the JAR file
 CMD ["java", "-Xmx1200M", "-jar", "fuseki-server.jar"]
