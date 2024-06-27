@@ -14,4 +14,4 @@ EXPOSE 3030
 RUN chmod +x fuseki-server.jar
 
 # Command to run the JAR file
-CMD ["java", "-Xmx1200M", "-jar", "fuseki-server.jar"]
+CMD ["java", "-Xms2g", "-Xmx6g", "-jar", "fuseki-server.jar"]
