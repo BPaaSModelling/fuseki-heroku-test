@@ -1,1 +1,1 @@
-web: ./fuseki-server --update --mem --port=$PORT /ds
+web: ./fuseki-server --update --mem --port=$PORT /ModEnv
