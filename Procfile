@@ -1,1 +1,1 @@
-web: ./fuseki-server --update --mem --port=$PORT /ModEnv
+web: java -jar fuseki-server.jar --update --mem --port=$PORT /ModEnv
